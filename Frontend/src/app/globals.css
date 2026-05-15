@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-body: "DM Sans", sans-serif;
+  --font-display: "Fraunces", serif;
+  --font-mono: "DM Mono", monospace;
+
+  --col-bg: #f7f6f3;
+  --col-surface: #ffffff;
+  --col-border: #e8e5df;
+  --col-border-strong: #d4cfc6;
+  --col-text: #1a1814;
+  --col-text-muted: #7a7570;
+  --col-accent: #2d5be3;
+  --col-accent-hover: #1e45c4;
+  --col-accent-light: #eef2fd;
+  --col-success: #166534;
+  --col-success-bg: #dcfce7;
+  --col-warning: #92400e;
+  --col-warning-bg: #fef3c7;
+  --col-neutral: #374151;
+  --col-neutral-bg: #f3f4f6;
+  --col-danger: #991b1b;
+  --col-danger-bg: #fee2e2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body);
+  background: var(--col-bg);
+  color: var(--col-text);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+/* ── Skeleton shimmer ── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #e8e5df 25%,
+    #f0ede8 50%,
+    #e8e5df 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s infinite;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+/* ── Card ── */
+.card {
+  background: var(--col-surface);
+  border: 1px solid var(--col-border);
+  border-radius: 12px;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.card:hover {
+  border-color: var(--col-border-strong);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary {
+  background: var(--col-accent);
+  color: #fff;
+}
+.btn-primary:hover:not(:disabled) { background: var(--col-accent-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(45,91,227,0.3); }
+.btn-secondary {
+  background: var(--col-surface);
+  color: var(--col-text);
+  border: 1px solid var(--col-border-strong);
+}
+.btn-secondary:hover:not(:disabled) { background: var(--col-bg); }
+.btn-danger {
+  background: var(--col-danger-bg);
+  color: var(--col-danger);
+  border: 1px solid #fca5a5;
+}
+.btn-danger:hover:not(:disabled) { background: #fecaca; }
+
+/* ── Form inputs ── */
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--col-text);
+  background: var(--col-surface);
+  border: 1px solid var(--col-border-strong);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-input:focus {
+  border-color: var(--col-accent);
+  box-shadow: 0 0 0 3px rgba(45,91,227,0.12);
+}
+.form-input.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+}
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--col-text);
+  margin-bottom: 5px;
+}
+.form-error {
+  font-size: 12px;
+  color: #dc2626;
+  margin-top: 4px;
+}
+select.form-input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7570' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 32px;
+}
+
+/* ── Animations ── */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+.animate-fade-in { animation: fadeIn 0.35s ease forwards; }
+.animate-slide-up { animation: slideUp 0.4s ease forwards; }
+.stagger-1 { animation-delay: 0.05s; opacity: 0; }
+.stagger-2 { animation-delay: 0.1s; opacity: 0; }
+.stagger-3 { animation-delay: 0.15s; opacity: 0; }
+.stagger-4 { animation-delay: 0.2s; opacity: 0; }
